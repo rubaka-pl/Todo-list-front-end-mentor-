@@ -115,7 +115,12 @@ header .sub {
   right: 20px;
   color: inherit;
 }
-
+@media (max-width: 450px) {
+  #theme-toggle {
+    right: 0px;
+    top: 0px;
+  }
+}
 /* -------------------------------------------------- */
 /* FILTER BUTTONS                                     */
 /* -------------------------------------------------- */
