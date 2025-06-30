@@ -1,0 +1,349 @@
+/* -------------------------------------------------- */
+/* GLOBAL STYLES                                     */
+/* -------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(to right, #41295a, #2f0743);
+  color: white;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* -------------------------------------------------- */
+/* THEME STYLES                                       */
+/* -------------------------------------------------- */
+body.dark {
+  background: linear-gradient(to right, #41295a, #2f0743);
+  color: white;
+}
+
+body.light {
+  background: linear-gradient(to right, #f0f0f0, #876363);
+  color: #222;
+}
+
+body.light input,
+body.light button,
+body.light .todo-item {
+  background: white;
+  color: #222 !important;
+}
+
+body.light select {
+  background: white;
+  color: #222 !important;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+}
+
+body.dark select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+}
+
+body.light .todo-item.completed span:first-of-type {
+  color: #aaa;
+}
+
+/* -------------------------------------------------- */
+/* HEADER                                             */
+/* -------------------------------------------------- */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 48px;
+  letter-spacing: 4px;
+  color: white;
+}
+
+header .sub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 6px;
+  font-weight: 300;
+}
+
+/* -------------------------------------------------- */
+/* THEME TOGGLE BUTTON                                */
+/* -------------------------------------------------- */
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: inherit;
+}
+
+/* -------------------------------------------------- */
+/* FILTER BUTTONS                                     */
+/* -------------------------------------------------- */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.filter-btn.active {
+  background: #4ade80;
+  color: black;
+  font-weight: bold;
+}
+
+/* -------------------------------------------------- */
+/* FORM                                               */
+/* -------------------------------------------------- */
+form {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+input[type='text'],
+select {
+  background: #1e1e1e;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+}
+
+button {
+  background: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #5a4bcf;
+}
+
+/* -------------------------------------------------- */
+/* TODO LIST STYLES                                   */
+/* -------------------------------------------------- */
+ul#todo-list {
+  list-style: none;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 500px;
+  padding: 0;
+}
+
+.todo-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: grab;
+}
+
+.todo-item.dragging {
+  opacity: 0.4;
+  transform: scale(1.02);
+  cursor: grab;
+}
+
+.todo-item:active {
+  cursor: grabbing;
+}
+
+.todo-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.light .todo-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+li.todo-item {
+  background: #1e1e1e;
+  margin-bottom: 10px;
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: fadeInUp 0.9s ease;
+  opacity: 1;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+li.todo-item span {
+  font-size: 16px;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.todo-item input[type='checkbox'] {
+  display: none;
+}
+
+.todo-item label.checkbox {
+  position: relative;
+  width: 40px;
+  height: 35px;
+  margin-right: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.todo-item label.checkbox::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6ee7b7, #8b5cf6);
+  border-radius: 50%;
+  transition: 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.todo-item label.checkbox::after {
+  content: '✔';
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.2s ease;
+}
+
+.todo-item input[type='checkbox']:checked + label.checkbox::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.todo-item input[type='checkbox']:checked + label.checkbox::before {
+  background: linear-gradient(135deg, #00c9ff, #92fe9d);
+}
+
+li.todo-item .close {
+  margin-left: 20px;
+  color: #e17055;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+li.todo-item .close:hover {
+  color: #ff7675;
+}
+
+li.todo-item.completed span:nth-of-type(1) {
+  text-decoration: line-through;
+  color: #888;
+}
+
+li.todo-item.completed > span b,
+li.todo-item.completed > span i {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* -------------------------------------------------- */
+/* ANIMATIONS                                         */
+/* -------------------------------------------------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.todo-item.removing {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/* -------------------------------------------------- */
+/* CLEAR BUTTON                                       */
+/* -------------------------------------------------- */
+#clear-completed {
+  background: #e17055;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#clear-completed:hover {
+  background: #ff7675;
+}
+
+body.light #clear-completed {
+  background: #d63031;
+  color: white;
+}
+
+/* -------------------------------------------------- */
+/* DRAG & DROP STYLES                                 */
+/* -------------------------------------------------- */
+.todo-item.sortable-chosen {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transform: scale(1.03);
+  z-index: 10;
+}
+
+body.light .todo-item.sortable-chosen {
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.todo-item.sortable-ghost {
+  opacity: 0.3;
+  background: transparent;
+  border: 2px dashed #888;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>ToDo List</h1>
+        <p class="sub">api provided by jsonplaceholder · page created by <strong>rubaka-pl</strong></p>
+        <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+
+    </header>
+
+    <main>
+        <form autocomplete="off">
+            <label>
+                <input id="new-todo" name="todo" type="text" placeholder="new todo" />
+            </label>
+            <select id="user-todo" name="user">
+                <option disabled selected>select user</option>
+            </select>
+            <button>Add Todo</button>
+        </form>
+
+        <div class="filters">
+            <button data-filter="all" class="filter-btn active">All</button>
+            <button data-filter="active" class="filter-btn">Active</button>
+            <button data-filter="completed" class="filter-btn">Completed</button>
+        </div>
+
+        <ul id="todo-list">
+
+        </ul>
+        <button id="clear-completed" style="margin-top: 20px;">Clear completed</button>
+
+    </main>
+
+    <script type="module" src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.8.39/build/Tone.min.js"></script>
+
+</body>
+
+</html>
