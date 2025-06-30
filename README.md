@@ -22,4 +22,5 @@ This is a feature-rich, interactive TODO List app built with vanilla JavaScript.
 - [Sortable.js](https://github.com/SortableJS/Sortable) for drag & drop
 - JSONPlaceholder API for testing
 
-![image](https://github.com/user-attachments/assets/ac785d75-bc0b-4390-9809-e350925df4b2)
+![image](https://github.com/user-attachments/assets/cb378620-bdd5-4165-b044-a7a6a95ac2df)
+
