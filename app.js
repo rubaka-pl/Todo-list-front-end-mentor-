@@ -29,9 +29,10 @@ import { playDropSound, playToggleSound } from './sound.js';
     updateToggleIcon(newTheme);
     playToggleSound();
   });
-
   function updateToggleIcon(theme) {
-    themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+    const iconImg = document.getElementById('theme-icon');
+    iconImg.src =
+      theme === 'dark' ? './images/icon-moon.svg' : './images/icon-sun.svg';
   }
 
   filterButtons.forEach((btn) => {
@@ -79,8 +80,9 @@ import { playDropSound, playToggleSound } from './sound.js';
     customLabel.className = 'checkbox';
     customLabel.setAttribute('for', `todo-${id}`);
 
-    const close = document.createElement('span');
-    close.innerHTML = '&times;';
+    const close = document.createElement('img');
+    close.src = './images/icon-cross.svg';
+    close.alt = 'Delete todo';
     close.className = 'close';
     close.addEventListener('click', handleClose);
 
@@ -139,6 +141,7 @@ import { playDropSound, playToggleSound } from './sound.js';
         chosenClass: 'sortable-chosen',
         dragClass: 'sortable-drag',
         onEnd: () => playDropSound(),
+        onMove: throttle(() => playDropSound(), 200),
       });
     } catch (error) {
       console.error('Init error:', error);
@@ -198,5 +201,15 @@ import { playDropSound, playToggleSound } from './sound.js';
           ? ''
           : 'none';
     });
+  }
+
+  function throttle(callback, delay) {
+    let lastCall = 0;
+    return function (...args) {
+      const now = new Date().getTime();
+      if (now - lastCall < delay) return;
+      lastCall = now;
+      callback(...args);
+    };
   }
 })();

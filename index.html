@@ -6,16 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="background"></div>
+
     <header>
         <h1>ToDo List</h1>
         <p class="sub">api provided by jsonplaceholder · page created by <strong>rubaka-pl</strong></p>
-        <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
-
+        <button id="theme-toggle" aria-label="Toggle theme">
+            <img id="theme-icon" src="./images/icon-moon.svg" alt="Toggle theme" width="24" height="24" />
+        </button>
     </header>
 
     <main>
